@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Groupie Tracker</title>
+      <meta name="keywords" content="bands artist dates locations relation music musician members">
+      <meta name="description" content="Groupie tracker">
+      <meta name="author" content="">
+      <link rel="stylesheet" href="/static/css/reset.css">
+      <link rel="stylesheet" href="/static/css/styles.css">
+      <link rel="stylesheet" href="/static/css/responsive.css">
+   </head>
+   <body>
+      <header>
+        <nav class="navbar">
+            <div class="navbar-item logo">
+                <a href="/">
+                   <img
+                       src="/static/images/logo.png"
+                       alt="Logo"
+                   />
+                </a>
+             </div>
+             <div class="navbar-item links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+             </div>
+        </nav>
+      </header>
+      <main>
+        <div class="container">
+            <div class="row">
+               <div class="title">
+                  <h2>{{ .Title }}</h2>
+                  <p>{{ .Summary }}</p>
+                  <p><small>Click on the image to view the details of each artist</small></p>
+               </div>
+             </div>
+             <div class="row">
+                 {{ range $item := .Content }}
+                <div class="col">
+                  <a href="/artists/{{ $item.Id }}">
+                     <div class="coltent">
+                        <figure><img src="{{ $item.Image }}" alt="{{ $item.Name }} image"/></figure>
+                     </div>
+                  </a>
+                  <p style="text-align: center; opacity: .3; margin-bottom: 1rem;">{{ $item.Name }}</p>
+                </div>
+                {{ end }}
+             </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <span>
+            &copy;2024 groupietracker
+        </span>
+      </footer>
+   </body>
+</html>
