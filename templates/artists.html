@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <title>{{ .Title }}</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="stylesheet" href="/static/css/bootstrap.css">
+      <link rel="stylesheet" href="/static/css/styles.css">
+      <link rel="stylesheet" href="/static/css/responsive.css">
+   
+   </head>
+   <body class="main-layout">
+      <header>
+         <!-- header inner -->
+         <div class="head-top">
+            <div class="container-fluid">
+               <div class="row d_flex">
+                  <div class="col-sm-3">
+                     <div class="logo">
+                        <a href="index.html">
+                            <img
+                                src="/static/images/logo.png"
+                                alt="Logo"
+                                style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; display: block; margin: auto;"
+                            />
+                        </a>                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- end header -->   
+      <!-- our_mics -->
+      <div class="our_mics">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-10 offset-md-1">
+                  <div class="titlepage text_align_center">
+                     <h2>{{ .Title }}</h2>
+                     <p>{{ .Summary }}</p>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+                {{ range $item := .Content }}
+               <div class="col-md-4 col-sm-6 margin_bottom40">
+                  <div id="ho_show" class="mics">
+                     <figure><img class="img_responsive" src="{{ $item.Image }}" alt="{{ $item.Name }} image"/></figure>
+                     <div class="mics_icon">
+                        <a href="/artists/{{ $item.Id }}">
+                        <i class="fa fa-search" aria-hidden="true">{{ $item.Name }}</i>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               {{ end }}
+            </div>
+         </div>
+      </div>
+      <!-- end our_mics -->
+      <div class="separator"></div>     
+      
+      <!-- footer -->
+      <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="logo_footer" href="#">
+                            <img src="/static/images/music.png" alt="Footer Logo" style="width: 70px; height: 70px; border-radius: 50%;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright text_align_center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <p>© 2020 All Rights Reserved <a href="https://learn.zone01kisumu.ke/git/bbantu/groupie-tracker/">Groupie-Tracker</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+      <!-- end footer -->
+   </body>
+</html>
