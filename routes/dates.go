@@ -12,7 +12,10 @@ import (
 )
 
 func Dates(w http.ResponseWriter, r *http.Request) {
-    t := template.Must(template.ParseFiles("templates/dates.html"))
+    if r.Method != "GET" {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
     
     id := strings.TrimPrefix(r.URL.Path, "/dates/")
     if id == "" {
@@ -39,6 +42,12 @@ func Dates(w http.ResponseWriter, r *http.Request) {
             Dates: date.Dates,
         }
         
+        templ, err := template.ParseFiles("templates/dates.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	t := template.Must(templ, err)
         t.Execute(w, data)
     } else {
         http.Error(w, "Page not found", http.StatusNotFound)

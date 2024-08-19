@@ -11,7 +11,10 @@ import (
 )
 
 func Artists(w http.ResponseWriter, r *http.Request) {
-	t := template.Must(template.ParseFiles("templates/artists.html"))
+	if r.Method != "GET" {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 
 	var data artistsTData
 	jsonData, status, found := requests.Get("https://groupietrackers.herokuapp.com/api/artists")
@@ -34,6 +37,13 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 			Summary: "The home of artists",
 		}
 	}
+
+	templ, err := template.ParseFiles("templates/artists.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	t := template.Must(templ, err)
 	t.Execute(w, data)
 }
 

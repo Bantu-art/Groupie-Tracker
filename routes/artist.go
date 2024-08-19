@@ -12,6 +12,10 @@ import (
 )
 
 func Artist(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 	urlParts := strings.Split(r.URL.Path, "/")
 	if len(urlParts) != 3 {
 		http.Error(w, "Page not found", http.StatusNotFound)
@@ -20,8 +24,6 @@ func Artist(w http.ResponseWriter, r *http.Request) {
 
 	id := urlParts[len(urlParts)-1]
 	artistUrl := fmt.Sprintf("https://groupietrackers.herokuapp.com/api/artists/%s", id)
-
-	t := template.Must(template.ParseFiles("templates/artist.html"))
 
 	// template data type
 	var data artistTData
@@ -68,6 +70,12 @@ func Artist(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	templ, err := template.ParseFiles("templates/artist.html")
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+	t := template.Must(templ, err)
 	t.Execute(w, data)
 }
 
