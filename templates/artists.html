@@ -47,19 +47,20 @@
                </div>
             </div>
             <div class="row">
-                {{ range $item := .Content }}
+               {{ range $item := .Content }}
                <div class="col-md-4 col-sm-6 margin_bottom40">
-                  <div id="ho_show" class="mics">
-                     <figure><img class="img_responsive" src="{{ $item.Image }}" alt="{{ $item.Name }} image"/></figure>
-                     <div class="mics_icon">
-                        <a href="/artists/{{ $item.Id }}">
-                        <i class="fa fa-search" aria-hidden="true">{{ $item.Name }}</i>
-                        </a>
-                     </div>
-                  </div>
+                   <a href="/artists/{{ $item.Id }}" class="d-block">
+                       <div id="ho_show" class="mics">
+                           <figure><img class="img_responsive" src="{{ $item.Image }}" alt="{{ $item.Name }} image"/></figure>
+                           <div class="mics_icon">
+                               <i class="fa fa-search" aria-hidden="true">{{ $item.Name }}</i>
+                           </div>
+                       </div>
+                   </a>
                </div>
                {{ end }}
-            </div>
+           </div>
+           
          </div>
       </div>
       <!-- end our_mics -->
