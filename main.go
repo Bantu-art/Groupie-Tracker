@@ -13,7 +13,7 @@ func main() {
 	if len(os.Args) != 1 {
 		log.Fatalf("Usage: go run .")
 	}
-	fmt.Println("Server running on :9000")
+	fmt.Println("Server running on http://localhost:9000/")
 	http.HandleFunc("/", routes.Index)
 	http.HandleFunc("/static/", routes.Static)
 	http.HandleFunc("/artists", routes.Artists)
