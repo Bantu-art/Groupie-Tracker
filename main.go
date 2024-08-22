@@ -22,5 +22,10 @@ func main() {
 	http.HandleFunc("/locations/", routes.Locations)
 	http.HandleFunc("/relation/", routes.Relation)
 
+	// error pages
+	http.HandleFunc("/404", routes.Errors)
+	http.HandleFunc("/405", routes.Errors)
+	http.HandleFunc("/500", routes.Errors)
+
 	http.ListenAndServe(":9000", nil)
 }

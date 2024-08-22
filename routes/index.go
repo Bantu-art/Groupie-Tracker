@@ -7,11 +7,11 @@ import (
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		http.Redirect(w, r, "/405", http.StatusFound)
 		return
 	}
 	if r.URL.Path != "/" {
-		http.Error(w, "Page not found", http.StatusNotFound)
+		http.Redirect(w, r, "/404", http.StatusFound)
 		return
 	}
 
@@ -23,7 +23,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 	templ, err := template.ParseFiles("templates/index.html")
 	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		http.Redirect(w, r, "/500", http.StatusFound)
 		return
 	}
 	t := template.Must(templ, err)

@@ -13,12 +13,12 @@ import (
 
 func Artist(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		http.Redirect(w, r, "/405", http.StatusFound)
 		return
 	}
 	urlParts := strings.Split(r.URL.Path, "/")
 	if len(urlParts) != 3 {
-		http.Error(w, "Page not found", http.StatusNotFound)
+		http.Redirect(w, r, "/404", http.StatusFound)
 		return
 	}
 
@@ -41,6 +41,7 @@ func Artist(w http.ResponseWriter, r *http.Request) {
 		err := json.Unmarshal([]byte(jsonArtistData), &artist)
 		if err != nil {
 			fmt.Println("Error unmarshalling artist JSON:", err)
+			http.Redirect(w, r, "/500", http.StatusFound)
 			return
 		}
 
@@ -53,6 +54,7 @@ func Artist(w http.ResponseWriter, r *http.Request) {
 			err := json.Unmarshal([]byte(jsonRelationData), &relation)
 			if err != nil {
 				fmt.Println("Error unmarshalling location JSON:", err)
+				http.Redirect(w, r, "/500", http.StatusFound)
 				return
 			}
 		}
@@ -72,7 +74,7 @@ func Artist(w http.ResponseWriter, r *http.Request) {
 
 	templ, err := template.ParseFiles("templates/artist.html")
 	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		http.Redirect(w, r, "/500", http.StatusFound)
 		return
 	}
 	t := template.Must(templ, err)

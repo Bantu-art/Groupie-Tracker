@@ -6,13 +6,13 @@ import (
 	"html/template"
 	"net/http"
 
-	"groupie-tracker/types"
 	"groupie-tracker/requests"
+	"groupie-tracker/types"
 )
 
 func Artists(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		http.Redirect(w, r, "/405", http.StatusFound)
 		return
 	}
 
@@ -23,6 +23,7 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 		err := json.Unmarshal([]byte(jsonData), &artists)
 		if err != nil {
 			fmt.Println("Error unmarshalling JSON:", err)
+			http.Redirect(w, r, "/500", http.StatusFound)
 			return
 		}
 
@@ -40,7 +41,7 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 
 	templ, err := template.ParseFiles("templates/artists.html")
 	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		http.Redirect(w, r, "/500", http.StatusFound)
 		return
 	}
 	t := template.Must(templ, err)
