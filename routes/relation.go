@@ -10,20 +10,19 @@ import (
 	ctypes "groupie-tracker/types"
 
 	"groupie-tracker/requests"
-
 )
 
 func Relation(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		http.Redirect(w, r, "/405", http.StatusFound)
 		return
 	}
 
 	id := strings.TrimPrefix(r.URL.Path, "/relation/")
-    if id == "" {
-        http.Error(w, "Page not found", http.StatusNotFound)
-        return
-    }
+	if id == "" {
+		http.Redirect(w, r, "/404", http.StatusFound)
+		return
+	}
 
 	relationUrl := fmt.Sprintf("https://groupietrackers.herokuapp.com/api/relation/%s", id)
 	var relation ctypes.Relation
@@ -33,6 +32,7 @@ func Relation(w http.ResponseWriter, r *http.Request) {
 		err := json.Unmarshal([]byte(jsonRelationData), &relation)
 		if err != nil {
 			fmt.Println("Error unmarshalling location JSON:", err)
+			http.Redirect(w, r, "/500", http.StatusFound)
 			return
 		}
 
@@ -45,13 +45,14 @@ func Relation(w http.ResponseWriter, r *http.Request) {
 		}
 
 		templ, err := template.ParseFiles("templates/relation.html")
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-	t := template.Must(templ, err)
+		if err != nil {
+			http.Redirect(w, r, "/500", http.StatusFound)
+			return
+		}
+		t := template.Must(templ, err)
 		t.Execute(w, data)
 	} else {
-		http.Error(w, "Page not found", http.StatusNotFound)
+		http.Redirect(w, r, "/404", http.StatusFound)
+		return
 	}
 }
