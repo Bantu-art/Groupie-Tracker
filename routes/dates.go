@@ -52,6 +52,6 @@ func Dates(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, data)
 	} else {
 		http.Redirect(w, r, "/500", http.StatusFound)
-        return
+		return
 	}
 }
