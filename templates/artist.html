@@ -4,24 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
-    <link rel="stylesheet" href="/static/css/art.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/artist.css">
 </head>
 <body>
     <header>
-        <div class="head-top">
-            <div class="container">
-                <div class="row d_flex">
-                    <div class="col-sm-3">
-                        <div class="logo">
-                            <a href="/">
-                                <img
-                                    src="/static/images/logo.png"
-                                    alt="Logo"
-                                    style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; display: block; margin: auto;"
-                                />
-                             </a>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="head-top">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/images/logo.png" alt="Logo" />
+                    </a>
                 </div>
                 <div>
                     <a href="/">Home</a>
@@ -30,59 +23,44 @@
             </div>
         </div>
     </header>
-
     <main>
-        <div class="grid">
-            <div class="grid-box">
-                <div>
+        <div class="container">
+            <div class="grid">
+                <div class="grid-box">
                     <img src="{{ .Artist.Image }}" alt="artist image" class="artist-image" />
+                    <div class="info-group">
+                        <h2>First Album</h2>
+                        <div class="artist-info">{{ .Artist.FirstAlbum }}</div>
+                    </div>
+                    <div class="info-group">
+                        <h2>Members</h2>
+                        <ul>
+                            {{ range $member := .Artist.Members }}
+                            <li>{{ $member }}</li>
+                            {{ else }}
+                            <li>No members found</li>
+                            {{ end }}
+                        </ul>
+                    </div>
                 </div>
-                <h2>First Album</h2>
-                <div class="artist-info">{{ .Artist.FirstAlbum }}</div>
-                <div>
-                    <h2>Members</h2>
-                    <ul>
-                    {{ range $member := .Artist.Members }}
-                        <li>{{ $member }}</li>
-                    {{ else }}
-                        <div class="no-artist">
-                            <h2>Artist</h2>
-                            <p>No artist details were found</p>
-                        </div>
-                    {{ end }}
-                    </ul>
-                </div>
-            </div>
-            <div class="grid-box">
-                <h2>Concerts & Locations</h2>
-                <div>
-                    <a href="../relation/{{ .Artist.Id }}" class="btn">Relation</a>
-                    <a href="../locations/{{ .Artist.Id }}" class="btn">Locations</a>
-                    <a href="../dates/{{ .Artist.Id }}" class="btn">Dates</a>
+                <div class="grid-box">
+                    <h2>Concerts & Locations</h2>
+                    <div class="btn-container">
+                        <a href="../relation/{{ .Artist.Id }}" class="btn">Relation</a>
+                        <a href="../locations/{{ .Artist.Id }}" class="btn">Locations</a>
+                        <a href="../dates/{{ .Artist.Id }}" class="btn">Dates</a>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
     <footer>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a class="logo_footer" href="#">
-                            <img src="/static/images/music.png" alt="Footer Logo" style="width: 80px; height: 80px; border-radius: 50%;" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright text_align_center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 offset-md-1">
-                            <p>© 2020 All Rights Reserved <a href="https://learn.zone01kisumu.ke/git/bbantu/groupie-tracker/">Groupie-Tracker</a></p>
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <a class="logo_footer" href="#">
+                <img src="/static/images/music.png" alt="Footer Logo" />
+            </a>
+            <div class="copyright">
+                <p>© 2024 All Rights Reserved <a href="https://learn.zone01kisumu.ke/git/bbantu/groupie-tracker/">Groupie-Tracker</a></p>
             </div>
         </div>
     </footer>

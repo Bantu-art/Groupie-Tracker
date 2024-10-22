@@ -4,72 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
-    <link rel="stylesheet" href="/static/css/art.css">
-    <link rel="stylesheet" href="/static/css/concerts.css"> <!-- Link to the concerts.css file -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/relation.css">
 </head>
 <body>
     <header>
-        <div class="head-top">
-            <div class="container">
-                <div class="row d_flex">
-                    <div class="col-sm-3">
-                        <div class="logo">
-                            <a href="/">
-                                <img
-                                    src="/static/images/logo.png"
-                                    alt="Logo"
-                                    style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; display: block; margin: auto;"
-                                />
-                             </a>
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="head-top">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/images/logo.png" alt="Logo" />
+                    </a>
                 </div>
-                <div>
+                <nav>
                     <a href="/">Home</a>
                     <a href="/artists">Artists</a>
-                </div>
+                </nav>
             </div>
         </div>
     </header>
-
+    
     <main>
         <div class="container">
             <h1 class="title">{{ .Title }}</h1>
-    
             <div class="concerts">
                 {{range $location, $dates := .Relation}}
-                    <div class="concert-location">
-                        <h3 class="location-title">{{$location}}</h3>
-                        <ul class="date-list">
-                            {{range $dates}}
+                <div class="concert-location">
+                    <div class="concert-inner">
+                        <div class="concert-front">
+                            <h3 class="location-title">{{$location}}</h3>
+                            <p>Hover to see dates</p>
+                        </div>
+                        <div class="concert-back">
+                            <h3 class="location-title">{{$location}}</h3>
+                            <ul class="date-list">
+                                {{range $dates}}
                                 <li>{{ . }}</li>
-                            {{end}}
-                        </ul>
-                    </div>
-                {{end}}
-            </div>    
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a class="logo_footer" href="#">
-                            <img src="/static/images/music.png" alt="Footer Logo" style="width: 80px; height: 80px; border-radius: 50%;" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright text_align_center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 offset-md-1">
-                            <p>© 2020 All Rights Reserved <a href="https://learn.zone01kisumu.ke/git/bbantu/groupie-tracker/">Groupie-Tracker</a></p>
+                                {{end}}
+                            </ul>
                         </div>
                     </div>
                 </div>
+                {{end}}
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <a class="logo_footer" href="#">
+                <img src="/static/images/music.png" alt="Footer Logo" />
+            </a>
+            <div class="copyright">
+                <p>© 2024 All Rights Reserved <a href="https://learn.zone01kisumu.ke/git/bbantu/groupie-tracker/">Groupie-Tracker</a></p>
             </div>
         </div>
     </footer>
