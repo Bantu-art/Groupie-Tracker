@@ -56,6 +56,8 @@ body {
 
 .nav__link:hover {
     color: #00BFFF;
+    border-bottom: 2px solid #00BFFF;
+    transform: translateY(-2px);
 }
 
 /* Mobile menu button */
@@ -70,7 +72,10 @@ body {
     display: flex;
     align-items: center;
     background-image: url('static/images/backo.png');
+    background-size: cover;
+    background-position: center;
     position: relative;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .hero::before {
@@ -81,6 +86,7 @@ body {
     right: 0;
     bottom: 0;
     background-color: rgba(18, 18, 18, 0.7);
+    animation: backgroundPan 10s infinite alternate;
 }
 
 .hero__container {
@@ -117,9 +123,13 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Button hover effect */
 .btn:hover {
     background-color: #0099cc;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 191, 255, 0.3);
 }
+
 
 .hero__image {
     max-width: 45%;
@@ -128,6 +138,7 @@ body {
 .hero__image img {
     width: 100%;
     border-radius: 10px;
+    animation: zoomInOut 10s infinite alternate;
 }
 
 /* Footer styles */
@@ -192,5 +203,23 @@ body {
 
     .footer__socials {
         margin-top: 1rem;
+    }
+}
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes backgroundPan {
+    0% { background-position: top left; }
+    100% { background-position: bottom right; }
+}
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
     }
 }
