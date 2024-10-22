@@ -28,13 +28,13 @@ func Artists(w http.ResponseWriter, r *http.Request) {
 		}
 
 		data = artistsTData{
-			Title:   "Apis | Artists",
+			Title:   "Artists",
 			Summary: "The home of artists",
 			Content: artists,
 		}
 	} else {
 		data = artistsTData{
-			Title:   "Artists",
+			Title:   "APIs | Artists",
 			Summary: "The home of artists",
 		}
 	}
