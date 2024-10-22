@@ -1,9 +1,9 @@
-# Groupie Tracker - Docker Support
-![APIs](/static/images/What-are-APIs.jpeg)
+# Groupie-Tracker-Visualization
+![APIs](/static/images/RDME.png)
 
 ## Description
 
-Groupie Tracker is a project designed to provide detailed information about musical artists, including their concerts and members, in an interactive and visually appealing way. This project allows users to explore artist details and concert locations with ease. Docker support is provided for seamless deployment of the Groupie Tracker application.
+Groupie Tracker visualization is a project designed to provide detailed information about musical artists, including their concerts and members, in an interactive and visually appealing way. This project allows users to explore artist details and concert locations with ease.
 
 ## Authors
 - [Brian Bantu](https://github.com/Bantu-art)
@@ -20,8 +20,8 @@ Groupie Tracker is a project designed to provide detailed information about musi
 
 1. Clone the repository:
    ```bash
-   git clone https://learn.zone01kisumu.ke/git/bbantu/groupie-tracker
-   cd groupie-tracker
+   git clone https://learn.zone01kisumu.ke/git/anoduor/groupie-tracker-visualizations
+   cd groupie-tracker-visualization
    ```
 2. Run the server:
    ```bash
