@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strings"
 
+	"groupie-tracker/requests"
 	ctypes "groupie-tracker/types"
-	 "groupie-tracker/requests"
 )
 
 func Artist(w http.ResponseWriter, r *http.Request) {

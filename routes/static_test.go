@@ -20,10 +20,10 @@ func TestStatic(t *testing.T) {
 		url        string
 		statusCode int
 	}{
-		{"GET", "/test_exists.txt", http.StatusOK}, // (file exists) AND (valid HTTP method) => should be served
-		{"POST", "/test_exists.txt", http.StatusFound}, // (file exists) BUT (wrong HTTP method) => do not return files when method is wrong
+		{"GET", "/test_exists.txt", http.StatusOK},            // (file exists) AND (valid HTTP method) => should be served
+		{"POST", "/test_exists.txt", http.StatusFound},        // (file exists) BUT (wrong HTTP method) => do not return files when method is wrong
 		{"GET", "/test_notexists_file.txt", http.StatusFound}, // (file does not exist) AND (valid HTTP method)
-		{"GET", "/static/", http.StatusFound}, // (directory) AND (valid HTTP method) => test if directory is being served
+		{"GET", "/static/", http.StatusFound},                 // (directory) AND (valid HTTP method) => test if directory is being served
 	}
 
 	for _, test := range tests {

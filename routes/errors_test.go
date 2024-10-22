@@ -25,7 +25,7 @@ func TestErrors(t *testing.T) {
 			w := &MyResponseWriter{
 				ResponseWriter: recorder,
 				StatusCode:     http.StatusOK,
-				Body:          new(bytes.Buffer),
+				Body:           new(bytes.Buffer),
 			}
 
 			// since it uses templates/errors.html to switch between error pages
