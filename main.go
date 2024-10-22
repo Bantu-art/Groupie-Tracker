@@ -21,6 +21,8 @@ func main() {
 	http.HandleFunc("/dates/", routes.Dates)
 	http.HandleFunc("/locations/", routes.Locations)
 	http.HandleFunc("/relation/", routes.Relation)
+	http.HandleFunc("/about/", routes.AboutHandler)
+	http.HandleFunc("/contacts/", routes.Contacts)
 
 	// error pages
 	http.HandleFunc("/404", routes.Errors)
