@@ -20,6 +20,43 @@ body {
     margin: 0 auto;
 }
 
+/* Header styles */
+.header {
+    background-color: rgba(18, 18, 18, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1rem 0;
+}
+
+.nav__list {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav__link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav__link:hover {
+    color: #00BFFF;
+}
+
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 /* Hero section styles */
 .hero {
     padding-top: 80px;
@@ -28,13 +65,9 @@ body {
     align-items: center;
     position: relative;
     min-height: 100vh;
-    /* Add background directly to hero as fallback */
-    background-image: url('../images/backo.png');
-    background-size: cover;
-    background-position: center;
 }
 
-/* Background handling - multiple path options */
+/* Background handling */
 .hero::before {
     content: '';
     position: absolute;
@@ -42,19 +75,11 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    /* Try multiple path variations */
-    background-image: url('../images/backo.png');
-    /* If above doesn't work, uncomment one of these alternates:
-    background-image: url('/static/images/backo.png');
-    background-image: url('../../static/images/backo.png');
-    background-image: url('/images/backo.png');
-    */
+    background-image: url('/static/images/backo.png');  /* Changed path to absolute */
     background-size: cover;
     background-position: center;
     opacity: 0.3;
     z-index: 0;
-    /* Add a background color as fallback */
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hero__container {
@@ -68,10 +93,6 @@ body {
 
 .hero__content {
     max-width: 50%;
-    /* Add background for debugging */
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 2rem;
-    border-radius: 10px;
 }
 
 .hero__title {
@@ -101,11 +122,13 @@ body {
     transform: scale(1.05);
 }
 
+/* Only show the image element on other pages */
 .hero__image {
     max-width: 45%;
-    display: none;
+    display: none; /* Hidden by default on index page */
 }
 
+/* Add a class to show the image when needed */
 .show-hero-image .hero__image {
     display: block;
 }
@@ -113,15 +136,40 @@ body {
 .hero__image img {
     width: 100%;
     border-radius: 10px;
+    animation: zoomInOut 10s infinite alternate;
+}
+
+/* Footer styles */
+.footer {
+    background-color: rgba(18, 18, 18, 0.9);
+    padding: 1rem 0;
+    margin-top: auto;
 }
 
 @media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+    
+    .mobile-menu-button {
+        display: block;
+    }
+
     .hero__container {
         flex-direction: column;
         text-align: center;
     }
 
-    .hero__content {
+    .hero__content, .hero__image {
         max-width: 100%;
     }
+
+    .hero__image {
+        margin-top: 2rem;
+    }
+}
+
+@keyframes zoomInOut {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
 }
